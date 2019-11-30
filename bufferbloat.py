@@ -148,7 +148,7 @@ def curl_webpage(net, curl_times):
     h2 = net.get('h2')
     webpage_transfer_time = []
     for i in range(curl_times):
-        curl_time = h2.cmd("curl -o /dev/null -s -w %{time_total} %s/http/index.html"%(h1.IP()), shell=True)
+        curl_time = h2.cmd("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%(h1.IP()), shell=True)
         webpage_transfer_time.append(float(curl_time))
     return webpage_transfer_time
 
