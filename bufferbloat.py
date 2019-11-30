@@ -206,7 +206,7 @@ def bufferbloat():
     while True:
         # do the measurement (say) 3 times.
         all_webpage_transfer_time.extend(curl_webpage(net, 3))
-        sleep(5)
+        sleep(1)
         now = time()
         delta = now - start_time
         if delta > args.time:
