@@ -85,8 +85,8 @@ class BBTopo(Topo):
         host1 = hosts[0]
         host2 = hosts[1]
         link_delay = '%sms'%args.delay
-        self.addLink(host1, switch, bw=args.bw_host, delay=link_delay)
-        self.addLink(host2, switch, bw=args.bw_net, delay=link_delay, max_queue_size=args.maxq)
+        self.addLink(host1, switch, bw=args.bw_host, delay=link_delay, max_queue_size=args.maxq)
+        self.addLink(switch, host2, bw=args.bw_net, delay=link_delay, max_queue_size=args.maxq)
         
 
 # Simple wrappers around monitoring utilities.  You are welcome to
@@ -186,7 +186,6 @@ def bufferbloat():
     # TODO: Start iperf, webservers, etc.
     start_iperf(net)
     start_webserver(net)
-    start_ping(net)
 
     # Hint: The command below invokes a CLI which you can use to
     # debug.  It allows you to run arbitrary commands inside your
@@ -206,7 +205,7 @@ def bufferbloat():
     while True:
         # do the measurement (say) 3 times.
         all_webpage_transfer_time.extend(curl_webpage(net, 3))
-        sleep(1)
+        sleep(5)
         now = time()
         delta = now - start_time
         if delta > args.time:
