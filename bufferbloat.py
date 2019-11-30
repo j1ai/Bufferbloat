@@ -149,6 +149,7 @@ def curl_webpage(net, curl_times):
     for i in range(curl_times):
         curl_time = h2.cmd("curl -o /dev/null -s -w %%{time_total} %s:8000/http/index.html"%(h1.IP()), shell=True)
         webpage_transfer_time.append(float(curl_time))
+    return webpage_transfer_time
 
 def bufferbloat():
     if not os.path.exists(args.dir):
