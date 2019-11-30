@@ -21,7 +21,7 @@ import termcolor as T
 import sys
 import os
 import math
-from .helper import *
+import helper
 
 # TODO: Don't just read the TODO sections in this code.  Remember that
 # one of the goals of this assignment is for you to learn how to use
@@ -214,8 +214,8 @@ def bufferbloat():
     # TODO: compute average (and standard deviation) of the fetch
     # times.  You don't need to plot them.  Just note it in your
     # README and explain.
-    mean = avg(all_webpage_transfer_time)
-    std_dev = stdev(all_webpage_transfer_time)
+    mean = helper.avg(all_webpage_transfer_time)
+    std_dev = helper.stdev(all_webpage_transfer_time)
     print(all_webpage_transfer_time)
     print "Average Fetch Times: " + str(mean)
     print "Standard Deviation of the Fetch Times: " + str(std_dev)
