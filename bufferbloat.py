@@ -84,8 +84,9 @@ class BBTopo(Topo):
         # TODO: Add links with appropriate characteristics
         host1 = hosts[0]
         host2 = hosts[1]
-        self.addLink(host1, switch, bw=args.bw_host, delay=args.delay, max_queue_size=args.maxq)
-        self.addLink(host2, switch, bw=args.bw_net, delay=args.delay, max_queue_size=args.maxq)
+        link_delay = '%sms'%args.delay
+        self.addLink(host1, switch, bw=args.bw_host, delay=link_delay)
+        self.addLink(host2, switch, bw=args.bw_net, delay=link_delay, max_queue_size=args.maxq)
         
 
 # Simple wrappers around monitoring utilities.  You are welcome to
@@ -147,7 +148,7 @@ def curl_webpage(net, curl_times):
     h2 = net.get('h2')
     webpage_transfer_time = []
     for i in range(curl_times):
-        curl_time = h2.cmd("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%(h1.IP()), shell=True)
+        curl_time = h2.cmd("curl -o /dev/null -s -w %{time_total} %s/http/index.html"%(h1.IP()), shell=True)
         webpage_transfer_time.append(float(curl_time))
     return webpage_transfer_time
 
